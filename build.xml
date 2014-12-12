@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ongr-content" default="build">
+    <target name="build"
+            depends="prepare,lint,phploc,pdepend,phpcs,phpmd,phpcpd,phpcb,unit-tests"/>
+
+    <target name="build-parallel" depends="prepare,lint,tools-parallel,phpcb"/>
+
+    <target name="tools-parallel" description="Run tools in parallel">
+        <parallel threadCount="2">
+            <sequential>
+                <antcall target="pdepend"/>
+                <antcall target="phpmd"/>
+            </sequential>
+            <antcall target="phpcpd"/>
+            <antcall target="phpcs"/>
+            <antcall target="phploc"/>
+        </parallel>
+    </target>
+
+    <target name="clean" description="Cleanup build artifacts">
+        <delete dir="${basedir}/Tests/app/build/api"/>
+        <delete dir="${basedir}/Tests/app/build/code-browser"/>
+        <delete dir="${basedir}/Tests/app/build/coverage"/>
+        <delete dir="${basedir}/Tests/app/build/logs"/>
+        <delete dir="${basedir}/Tests/app/build/pdepend"/>
+    </target>
+
+    <target name="prepare" depends="clean" description="Prepare for build">
+        <mkdir dir="${basedir}/Tests/app/build/api"/>
+        <mkdir dir="${basedir}/Tests/app/build/code-browser"/>
+        <mkdir dir="${basedir}/Tests/app/build/coverage"/>
+        <mkdir dir="${basedir}/Tests/app/build/logs"/>
+        <mkdir dir="${basedir}/Tests/app/build/pdepend"/>
+    </target>
+
+    <target name="lint" description="Perform syntax check of sourcecode files">
+        <apply executable="php" failonerror="true">
+            <arg value="-l"/>
+
+            <fileset dir="${basedir}">
+                <include name="**/*.php"/>
+                <exclude name="**/vendor/**"/>
+                <modified/>
+            </fileset>
+        </apply>
+    </target>
+
+    <target name="phploc" description="Measure project size using PHPLOC">
+        <exec executable="phploc">
+            <arg value="--log-csv"/>
+            <arg value="${basedir}/Tests/app/build/logs/phploc.csv"/>
+            <arg path="${basedir}"/>
+        </exec>
+    </target>
+
+    <target name="pdepend" description="Calculate software metrics using PHP_Depend">
+        <exec executable="pdepend">
+            <arg value="--jdepend-xml=${basedir}/Tests/app/build/logs/jdepend.xml"/>
+            <arg value="--jdepend-chart=${basedir}/Tests/app/build/pdepend/dependencies.svg"/>
+            <arg value="--overview-pyramid=${basedir}/Tests/app/build/pdepend/overview-pyramid.svg"/>
+            <arg value="--ignore=${basedir}/vendor,${basedir}/Tests/"/>
+            <arg path="${basedir}"/>
+        </exec>
+    </target>
+
+    <target name="phpmd"
+            description="Perform project mess detection using PHPMD and print human readable output. Intended for usage on the command line before committing.">
+        <exec executable="phpmd">
+            <arg path="${basedir}"/>
+            <arg value="xml"/>
+            <arg value="controversial,unusedcode,design,naming,codesize"/>
+            <arg value="> ${basedir}/Tests/app/build/logs/phpmd.xml"/>
+            <arg value="--exclude"/>
+            <arg value="vendor,Tests"/>
+        </exec>
+    </target>
+
+    <target name="phpcs"
+            description="Find coding standard violations using PHP_CodeSniffer and print human readable output. Intended for usage on the command line before committing.">
+        <exec executable="phpcs">
+            <arg value="--standard=psr2"/>
+            <arg value="--report=checkstyle"/>
+            <arg value="--report-file=Tests/app/build/logs/checkstyle.xml"/>
+            <arg value="--ignore=${basedir}/vendor,${basedir}/Tests/"/>
+            <arg path="${basedir}"/>
+        </exec>
+    </target>
+
+    <target name="phpcpd" description="Find duplicate code using PHPCPD">
+        <exec executable="phpcpd">
+            <arg value="--log-pmd"/>
+            <arg value="${basedir}/Tests/app/build/logs/pmd-cpd.xml"/>
+            <arg value="--exclude"/>
+            <arg value="vendor"/>
+            <arg value="--exclude"/>
+            <arg value="Tests"/>
+            <arg path="${basedir}"/>
+        </exec>
+    </target>
+
+    <target name="phpcb" description="Aggregate tool output with PHP_CodeBrowser">
+        <exec executable="phpcb">
+            <arg value="--ignore=${basedir}/vendor,${basedir}/Tests/"/>
+            <arg value="--log"/>
+            <arg path="${basedir}/Tests/app/build/logs"/>
+            <arg value="--source"/>
+            <arg path="${basedir}"/>
+            <arg value="--output"/>
+            <arg path="${basedir}/Tests/app/build/code-browser"/>
+        </exec>
+    </target>
+
+    <target name="unit-tests" description="Runs PHPUnit tests" depends="update-dependencies">
+        <exec executable="phpunit"/>
+    </target>
+
+    <target name="update-dependencies" description="Update dependencies with composer">
+        <exec executable="composer">
+            <arg value="update"/>
+            <arg value="--prefer-dist"/>
+        </exec>
+    </target>
+</project>

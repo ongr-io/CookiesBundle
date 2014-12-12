@@ -1,0 +1,31 @@
+{
+    "name": "ongr/cookies-bundle",
+    "description": "Cookie model for using cookies as Symfony services",
+    "keywords": ["cookies", "cookie", "model", "symfony", "service", "ongr"],
+    "type": "symfony-bundle",
+    "homepage": "http://ongr.io",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ONGR team",
+            "homepage": "http://www.nfq.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "symfony/symfony": "~2.3",
+        "symfony/assetic-bundle": "~2.3",
+        "cocur/slugify": "0.2.2",
+        "symfony/monolog-bundle": "~2.4",
+        "symfony/monolog-bridge": "~2.4",
+        "tedivm/stash-bundle": "0.4.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.1",
+        "squizlabs/php_codesniffer": "~1.5",
+        "ongr/ongr-strict-standard": "~1.0.0-beta"
+    },
+    "autoload": {
+        "psr-4": { "ONGR\\CookiesBundle\\": "" }
+    }
+}

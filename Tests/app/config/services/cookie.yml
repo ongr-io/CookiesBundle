@@ -1,0 +1,18 @@
+parameters:
+    ongr_cookie.generic.class: ONGR\CookiesBundle\Cookie\Model\GenericCookie
+    ongr_cookie.json.class: ONGR\CookiesBundle\Cookie\Model\JsonCookie
+
+    ongr_cookie.injector.class: ONGR\CookiesBundle\Cookie\Service\CookieInjector
+    ongr_cookie.listener.class: ONGR\CookiesBundle\EventListener\CookieModelListener
+
+services:
+    ongr_cookie.injector:
+        class: %ongr_cookie.injector.class%
+
+    ongr_cookie.listener:
+        class: %ongr_cookie.listener.class%
+        calls:
+            - [ setCookieInjector, [@ongr_cookie.injector] ]
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: 192 }
+            - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse, priority: -32 }

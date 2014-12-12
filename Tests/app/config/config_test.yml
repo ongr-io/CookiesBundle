@@ -1,0 +1,49 @@
+imports:
+    - { resource: parameters_test.yml }
+
+# Framework Configuration
+framework:
+    esi:             ~
+    fragments:       { path: /_proxy }
+    translator:      { fallback: "%locale%" }
+    secret:          %secret%
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: %kernel.debug%
+    form:            true
+    csrf_protection: true
+    validation:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+        #assets_version: 201204261
+        assets_base_urls:
+            http: [%cdn_url%]
+            ssl: [%cdn_url_ssl%]
+    default_locale:  "%locale%"
+    trusted_proxies: ~
+    session:         ~
+    test: ~
+
+monolog:
+    handlers:
+        main:
+            type:   stream
+            path:   "%kernel.logs_dir%/%kernel.environment%.log"
+            level:  notice
+        console:
+            type:   console
+            bubble: false
+
+services:
+    project.cookie_foo:
+        class: %ongr_cookie.json.class%
+        arguments: [ cookie_foo ]
+        calls:
+            - [setDefaults, [{http_only: false}]]
+        tags:
+            - { name: ongr_cookie.cookie }
+
+    project.controller.cookie:
+        class: ONGR\CookiesBundle\Tests\Fixtures\Cookie\CookieController
+        calls:
+            - [setContainer, [@service_container]]
