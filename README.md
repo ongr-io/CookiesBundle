@@ -6,6 +6,14 @@ It can be used as e Symfony service.
 Please see How to work with cookies page.
 
 
+[![Build Status](https://travis-ci.org/ongr-io/CookiesBundle.svg?branch=master)](https://travis-ci.org/ongr-io/CookiesBundle) 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ongr-io/CookiesBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ongr-io/CookiesBundle/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/ongr-io/CookiesBundle/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/ongr-io/CookiesBundle/?branch=master)
+[![Total Downloads](https://poser.pugx.org/ongr/cookies-bundle/downloads.svg)](https://packagist.org/packages/ongr/cookies-bundle)
+[![Latest Stable Version](https://poser.pugx.org/ongr/cookies-bundle/v/stable.svg)](https://packagist.org/packages/ongr/cookies-bundle)
+[![Latest Unstable Version](https://poser.pugx.org/ongr/cookies-bundle/v/unstable.svg)](https://packagist.org/packages/ongr/cookies-bundle)
+[![License](https://poser.pugx.org/ongr/cookies-bundle/license.svg)](https://packagist.org/packages/ongr/cookies-bundle)
+
 # Working with cookies
 
 ## How to define a cookie model
