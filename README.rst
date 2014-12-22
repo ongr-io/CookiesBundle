@@ -2,7 +2,42 @@
 CookiesBundle
 =============
 
-Cookies bundle provides Symfony way to handle with cookies.
+Cookies bundle provides Symfony way to handle cookies defining them as services.
+
+Usage example in code:
+
+.. code-block:: php
+
+    class CookieController
+    {
+        public function readAction()
+        {
+            $cart = $this->container->get('project.cookie.cart')->getValue();
+            $items = $cartCookie['items'];
+            // ...
+        }
+    }
+..
+
+Cookie configuration example:
+
+.. code-block:: yaml
+
+    parameters:
+        # One can optionally override defaults.
+        project.cookie.cart.defaults:
+            http_only: false
+            expires_interval: P5DT4H # 5 days and 4 hours
+    
+    services:
+        project.cookie.cart:
+            class: %ongr_cookie.json.class%
+            arguments: [ "project_cart" ]
+            calls:
+                - [ setDefaults, [ %project.cookie_foo.defaults% ] ]
+            tags:
+                - { name: ongr_cookie.cookie }
+..
 
 .. image:: https://travis-ci.org/ongr-io/CookiesBundle.svg?branch=master
     :target: https://travis-ci.org/ongr-io/CookiesBundle
