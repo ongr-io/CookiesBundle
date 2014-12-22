@@ -24,6 +24,9 @@ One can define a service:
     
     services:
         project.cookie_foo:
+            class: %ongr_cookie.json.class%
+            arguments: [ %project.cookie_foo.name% ]
+            calls:
                 - [setDefaults, [%project.cookie_foo.defaults%]] # Optional
             tags:
                 - { name: ongr_cookie.cookie }
