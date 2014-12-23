@@ -1,6 +1,7 @@
 =============
 CookiesBundle
 =============
+
 Cookies bundle provides cookie model abstraction tag.
 It can be used as e Symfony service.
 
@@ -17,21 +18,23 @@ One can define a service:
 .. code-block:: yaml
 
     parameters:
-        project.cookie_foo.name: cookie_foo
-        project.cookie_foo.defaults: # Defaults section is optional
+        project.cookie.foo.name: cookie.foo
+        project.cookie.foo.defaults: # Defaults section is optional
             http_only: false
             expires_interval: P5DT4H # 5 days and 4 hours
-    
+
     services:
-        project.cookie_foo:
-                - [setDefaults, [%project.cookie_foo.defaults%]] # Optional
+        project.cookie.foo:
+            class: %ongr_cookie.json.class%
+            arguments: [ %project.cookie.foo.name% ]
+            calls:
+                - [setDefaults, [%project.cookie.foo.defaults%]] # Optional
             tags:
                 - { name: ongr_cookie.cookie }
             
 ..
 
-Such injected service allows accessing cookie value, and upon modification, will send new value back to the client browser.  `CookieModelListener 
-<https://github.com/ongr-io/CookiesBundle/blob/master/EventListener/CookieModelListener.php>`_.
+Such injected service allows accessing cookie value. If the value has been modified by your code, it will send new value back to the client browser.
 
 .. code-block:: php
 
@@ -42,8 +45,9 @@ Such injected service allows accessing cookie value, and upon modification, will
         public function updateAction()
         {
             /** @var JsonCookie $cookie */
-            $cookie = $this->container->get('project.cookie_foo');
+            $cookie = $this->container->get('project.cookie.foo');
             $cookie->setValue(['bar']);
+            // Cookie has been marked as dirty and will be updated in the response.
             $cookie->setExpiresTime(2000000000);
     
             return new JsonResponse();
@@ -51,7 +55,6 @@ Such injected service allows accessing cookie value, and upon modification, will
     }
 
 ..
-
 
 Default values
 ~~~~~~~~~~~~~~
