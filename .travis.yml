@@ -4,7 +4,7 @@ php:
   - 5.5
   - 5.6
 env:
-  - SYMFONY="2.3.*"
+  - SYMFONY="2.6.*"
 install:
   - sudo pip install -q sphinx --use-mirrors
   - wget -q -O conf.py https://raw.githubusercontent.com/ongr-io/docs-aggregator/master/source/conf-travis.py
