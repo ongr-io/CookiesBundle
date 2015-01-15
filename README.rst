@@ -25,7 +25,9 @@ Cookies bundle provides Symfony way to handle cookies defining them as services.
 .. image:: https://poser.pugx.org/ongr/cookies-bundle/license.svg
     :target: https://packagist.org/packages/ongr/cookies-bundle
 
-=============
+
+
+
 
 Usage example in code:
 
