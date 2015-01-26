@@ -69,7 +69,7 @@ Documentation
 ~~~~~~~~~~~~~
 
 Documentation for this bundle can be found
-`here <http://ongr.readthedocs.org/en/latest/sources/CookiesBundle.git/Resources/doc/index.html>`_
+`here <https://ongr.readthedocs.org/en/latest/components/CookiesBundle/Resources/doc/index.html>`_
 
 
 License
