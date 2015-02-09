@@ -26,8 +26,9 @@ Cookies bundle provides Symfony way to handle cookies defining them as services.
     :target: https://packagist.org/packages/ongr/cookies-bundle
 
 
-
-
+.. GITHUB_HIDEME ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. GITHUB_HIDEME `Fork us on GitHub <https://github.com/ongr-io/CookiesBundle>`_
+.. GITHUB_HIDEME ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Usage example in code:
 
