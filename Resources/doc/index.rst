@@ -5,6 +5,10 @@ CookiesBundle
 Cookies bundle provides cookie model abstraction tag.
 It can be used as e Symfony service.
 
+.. GITHUB_HIDEME ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. GITHUB_HIDEME `Fork us on GitHub <https://github.com/ongr-io/CookiesBundle>`_
+.. GITHUB_HIDEME ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Working with cookies
 --------------------
 
