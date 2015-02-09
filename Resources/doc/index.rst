@@ -2,15 +2,12 @@
 CookiesBundle
 =============
 
-.. GITHUB_HIDEME `Fork us on GitHub <https://github.com/ongr-io/CookiesBundle>`_
-.. GITHUB_HIDEME    :class: fa fa-github
+.. GITHUB_HIDEME .. class:: fa fa-github
+.. GITHUB_HIDEME
+.. GITHUB_HIDEME `\   \ Fork us on GitHub <https://github.com/ongr-io/CookiesBundle>`_
 
 Cookies bundle provides cookie model abstraction tag.
 It can be used as a Symfony service.
-
-.. GITHUB_HIDEME ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.. GITHUB_HIDEME `Fork us on GitHub <https://github.com/ongr-io/CookiesBundle>`_
-.. GITHUB_HIDEME ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Working with cookies
 --------------------
