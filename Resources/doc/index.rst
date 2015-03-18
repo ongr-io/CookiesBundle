@@ -9,6 +9,38 @@ CookiesBundle
 Cookies bundle provides cookie model abstraction tag.
 It can be used as a Symfony service.
 
+Installing bundle
+-----------------
+
+To install this bundle add it to composer.
+
+.. code-block:: bash
+
+    composer require ongr/cookies-bundle:~0.1
+
+..
+
+Then register it in ``AppKernel.php``
+
+.. code-block:: php
+
+    class AppKernel extends Kernel
+    {
+        public function registerBundles()
+        {
+            return [
+                // ...
+                new ONGR\CookiesBundle\ONGRCookiesBundle(),
+            ];
+        }
+
+        // ...
+    }
+
+..
+
+That's it bundle is ready for work.
+
 Working with cookies
 --------------------
 
