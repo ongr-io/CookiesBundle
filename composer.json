@@ -17,8 +17,7 @@
         "symfony/assetic-bundle": "~2.3",
         "cocur/slugify": "0.2.2",
         "symfony/monolog-bundle": "~2.4",
-        "symfony/monolog-bridge": "~2.4",
-        "tedivm/stash-bundle": "0.4.*"
+        "symfony/monolog-bridge": "~2.4"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.1",
