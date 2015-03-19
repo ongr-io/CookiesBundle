@@ -39,7 +39,7 @@ Then register it in ``AppKernel.php``
 
 ..
 
-That's it bundle is ready for work.
+That's it - the bundle is ready for work.
 
 Working with cookies
 --------------------
