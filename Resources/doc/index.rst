@@ -35,7 +35,7 @@ One can define a service:
                 - [setDefaults, [%project.cookie.foo.defaults%]] # Optional
             tags:
                 - { name: ongr_cookie.cookie }
-            
+
 ..
 
 Such injected service allows accessing cookie value. If the value has been modified by your code, it will send new value back to the client browser.
@@ -45,7 +45,7 @@ Such injected service allows accessing cookie value. If the value has been modif
     class CookieController
     {
         use ContainerAwareTrait;
-    
+
         public function updateAction()
         {
             /** @var JsonCookie $cookie */
@@ -53,7 +53,7 @@ Such injected service allows accessing cookie value. If the value has been modif
             $cookie->setValue(['bar']);
             // Cookie has been marked as dirty and will be updated in the response.
             $cookie->setExpiresTime(2000000000);
-    
+
             return new JsonResponse();
         }
     }
@@ -97,3 +97,11 @@ Deleting cookie
 ~~~~~~~~~~~~~~~
 
 To remove a cookie from the client browser, use ``$cookie->setClear(true)``. All other model values will be ignored.
+
+More information
+~~~~~~~~~~~~~~~~
+
+.. toctree::
+    :glob:
+
+    internals
