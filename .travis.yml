@@ -1,3 +1,4 @@
+sudo: false
 language: php
 php:
   - 5.4
@@ -6,7 +7,8 @@ php:
 env:
   - SYMFONY="2.6.*"
 install:
-  - sudo pip install -q sphinx --use-mirrors
+  - pip install --upgrade pip --user `whoami`
+  - pip install -q sphinx --user `whoami`
   - wget -q -O conf.py https://raw.githubusercontent.com/ongr-io/docs-aggregator/master/source/conf-travis.py
   - mkdir _static
   - composer require --no-update symfony/symfony:${SYMFONY}
