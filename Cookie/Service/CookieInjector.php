@@ -24,7 +24,7 @@ class CookieInjector
     /**
      * @var CookieInterface[]
      */
-    protected $cookieModels;
+    protected $cookieModels = [];
 
     /**
      * Inject HTTP cookies into cookie models.
