@@ -52,3 +52,6 @@ Configuration of ``Cookie Models``
 ``Cookie Models`` are described as any other Symfony service, with one significant difference: tag ``ongr_cookie.cookie``
 is used to denote that the service is a ``Cookie Model``. All services tagged with this tag are collected in a separate
 compiler pass and added to the ``ongr_cookie.injector`` service by appending ``addCookieModel`` call to its' definition.
+
+Cookie models' names of a cookie service should not contain dot symbol '.' and must be the same as cookie names that need
+to be modeled.
