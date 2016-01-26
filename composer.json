@@ -12,20 +12,23 @@
         }
     ],
     "require": {
-        "php": ">=5.4",
-        "symfony/symfony": "~2.6",
-        "symfony/assetic-bundle": "~2.3",
-        "cocur/slugify": "0.2.2",
-        "symfony/monolog-bundle": "~2.4",
-        "symfony/monolog-bridge": "~2.4"
+        "php": ">=5.5",
+        "symfony/symfony": "~2.6|~3.0",
+        "cocur/slugify": "0.2.2"
     },
     "require-dev": {
-        "phpunit/phpunit": "~4.1",
+        "phpunit/phpunit": "~4.4",
         "squizlabs/php_codesniffer": "~2.0",
-        "ongr/ongr-strict-standard": "~2.1",
         "satooshi/php-coveralls": "~1.0"
     },
     "autoload": {
-        "psr-4": { "ONGR\\CookiesBundle\\": "" }
+        "psr-4": { "ONGR\\CookiesBundle\\": "" },
+        "exclude-from-classmap": ["/Tests/"]
+    },
+    "minimum-stability": "dev",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
     }
 }
