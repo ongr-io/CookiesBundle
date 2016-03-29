@@ -4,6 +4,8 @@ imports:
 # Framework Configuration
 framework:
     esi:             ~
+    assets:
+        base_urls: [%cdn_url%, %cdn_url_ssl%]
     fragments:       { path: /_proxy }
     translator:      { fallback: "%locale%" }
     secret:          %secret%
@@ -16,23 +18,10 @@ framework:
     templating:
         engines: ['twig']
         #assets_version: 201204261
-        assets_base_urls:
-            http: [%cdn_url%]
-            ssl: [%cdn_url_ssl%]
     default_locale:  "%locale%"
     trusted_proxies: ~
     session:         ~
     test: ~
-
-monolog:
-    handlers:
-        main:
-            type:   stream
-            path:   "%kernel.logs_dir%/%kernel.environment%.log"
-            level:  notice
-        console:
-            type:   console
-            bubble: false
 
 services:
     project.cookie_foo:
@@ -46,4 +35,4 @@ services:
     project.controller.cookie:
         class: ONGR\CookiesBundle\Tests\Fixtures\Cookie\CookieController
         calls:
-            - [setContainer, [@service_container]]
+            - [setContainer, ["@service_container"]]
