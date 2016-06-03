@@ -1,6 +1,6 @@
 # CookiesBundle
 
-Cookies bundle provides Symfony way to handle cookies defining them as services.
+Cookies bundle provides Symfony way to handle cookies defining them as services. This allows changing the values of the service and the bundle handles the actual creation and updates of cookies.
 
 [![Build Status](https://travis-ci.org/ongr-io/CookiesBundle.svg?branch=master)](https://travis-ci.org/ongr-io/CookiesBundle)
 [![Coverage Status](https://coveralls.io/repos/ongr-io/CookiesBundle/badge.svg?branch=master&service=github)](https://coveralls.io/github/ongr-io/CookiesBundle?branch=master)
@@ -38,42 +38,6 @@ Then register it in `AppKernel.php`
 
 That's it - the bundle is ready for work.
 
-
-## Simple usage example
-
-```php
-
-    class CookieController
-    {
-        public function readAction()
-        {
-            $cart = $this->container->get('project.cookie.cart')->getValue();
-            $items = $cartCookie['items'];
-            // ...
-        }
-    }
-```
-
-Cookie configuration example:
-
-```yaml
-
-    parameters:
-        # One can optionally override defaults.
-        project.cookie.cart.defaults:
-            http_only: false
-            expires_interval: P5DT4H # 5 days and 4 hours
-    
-    services:
-        project.cookie.cart:
-            class: %ongr_cookie.json.class%
-            arguments: [ "project_cart" ]
-            calls:
-                - [ setDefaults, [ %project.cookie_foo.defaults% ] ]
-            tags:
-                - { name: ongr_cookie.cookie }
-```
-
 ## Working with cookies
 
 ### How to define a cookie model
@@ -85,7 +49,7 @@ One can define a service:
 ```yaml
 
     parameters:
-        project.cookie.foo.name: cookie.foo
+        project.cookie.foo.name: cookie_foo
         project.cookie.foo.defaults: # Defaults section is optional
             http_only: false
             expires_interval: P5DT4H # 5 days and 4 hours
@@ -100,8 +64,11 @@ One can define a service:
                 - { name: ongr_cookie.cookie }
 
 ```
+> `Notice` Cookie models' names of a cookie service should not contain dot symbol '.' and must be the same as cookie names that need to be modeled.
 
 Such injected service allows accessing cookie value. If the value has been modified by your code, it will send new value back to the client browser.
+Manipulating cookie values with ONGR Cookies Bundle is very easy: you need to get the cookie model service and from it you can get the cookie value
+with `getValue()` method and set the value with `setValue(mixed $value)` method.
 
 ```php
 
