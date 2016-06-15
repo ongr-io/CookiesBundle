@@ -2,6 +2,9 @@
 
 Cookies bundle provides Symfony way to handle cookies defining them as services. This allows changing the values of the service and the bundle handles the actual creation and updates of cookies.
 
+If you need any help, [stack overflow](http://stackoverflow.com/questions/tagged/ongr)
+is the preffered and recommended way to ask ONGR support questions.
+
 [![Build Status](https://travis-ci.org/ongr-io/CookiesBundle.svg?branch=master)](https://travis-ci.org/ongr-io/CookiesBundle)
 [![Coverage Status](https://coveralls.io/repos/ongr-io/CookiesBundle/badge.svg?branch=master&service=github)](https://coveralls.io/github/ongr-io/CookiesBundle?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/ongr/cookies-bundle/v/stable)](https://packagist.org/packages/ongr/cookies-bundle)
